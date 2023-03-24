@@ -74,6 +74,7 @@ PizzasBlock.propTypes = {
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool,
 };
 
 PizzasBlock.defaultProps = {
