@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '../Button';
 
-function PizzasBlock({ name, imageUrl, price, types, sizes }) {
+function PizzasBlock({ id, name, imageUrl, price, types, sizes, onClickAddPizza, cartCount }) {
   const aviableTypes = ['тонкое', 'традиционное'];
   const aviableSize = [26, 30, 40];
   const [activeType, setActiveType] = React.useState(types[0]);
-  const [activeSize, setActiveSize] = React.useState(sizes[0]);
+  const [activeSize, setActiveSize] = React.useState(0);
 
   const onSelectType = (index) => {
     setActiveType(index);
@@ -14,6 +15,18 @@ function PizzasBlock({ name, imageUrl, price, types, sizes }) {
 
   const onSelectSize = (index) => {
     setActiveSize(index);
+  };
+
+  const onAddPizza = () => {
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: aviableSize[activeSize],
+      type: aviableTypes[activeType],
+    };
+    onClickAddPizza(obj);
   };
 
   return (
@@ -50,7 +63,7 @@ function PizzasBlock({ name, imageUrl, price, types, sizes }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <Button onClick={onAddPizza} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -63,8 +76,8 @@ function PizzasBlock({ name, imageUrl, price, types, sizes }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {cartCount && <i>{cartCount}</i>}
+        </Button>
       </div>
     </div>
   );
@@ -75,6 +88,8 @@ PizzasBlock.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   isLoading: PropTypes.bool,
+  onAddPizza: PropTypes.func,
+  cartCount: PropTypes.number,
 };
 
 PizzasBlock.defaultProps = {
