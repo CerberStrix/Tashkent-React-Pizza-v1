@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv';
+const dotenv = require('dotenv');
 const jsonServer = require('json-server');
 
 dotenv.config();
