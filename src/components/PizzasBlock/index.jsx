@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '../Button';
+import { getNumberLocale } from '../../utils';
 
 function PizzasBlock({ id, name, imageUrl, price, types, sizes, onClickAddPizza, cartCount }) {
   const aviableTypes = ['тонкое', 'традиционное'];
@@ -62,7 +63,7 @@ function PizzasBlock({ id, name, imageUrl, price, types, sizes, onClickAddPizza,
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+        <div className="pizza-block__price">от {getNumberLocale(price)} сум</div>
         <Button onClick={onAddPizza} className="button button--outline button--add">
           <svg
             width="12"

@@ -3,6 +3,7 @@ import logo from '../assets/img/pizza-logo.svg';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getNumberLocale } from '../utils';
 
 function Header() {
   const { totalPrice, totalCount } = useSelector(({ cart }) => ({
@@ -25,7 +26,7 @@ function Header() {
         <div className="header__cart">
           <Link to="/cart">
             <Button className="button--cart">
-              <span>{totalPrice} ₽</span>
+              <span>{getNumberLocale(totalPrice)} сум</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
